@@ -1,56 +1,58 @@
-let valueSearch = document.getElementById('valueSearch');
-let city = document.getElementById('city');
-let temperature = document.getElementById('temperature');
-let description = document.getElementById('description');
-let clouds = document.getElementById('clouds');
-let humidity = document.getElementById('humidity');
-let wind = document.getElementById('pressure');
-let form = document.querySelector('form');
-let main = document.querySelector('main');
+let valueSearch = document.getElementById("valueSearch");
+let city = document.getElementById("city");
+let temperature = document.getElementById("temperature");
+let description = document.getElementById("description");
+let clouds = document.getElementById("clouds");
+let humidity = document.getElementById("humidity");
+let pressure = document.getElementById("pressure");
+let form = document.querySelector("form");
+let main = document.querySelector("main");
 
-form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    if (valueSearch.value != '') {
-        searchWeather(); /* Se llama a la api */
-    }
-})
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  if (valueSearch.value != "") {
+    searchWeather();
+  }
+});
 
-/* Api en cuestion: https://home.openweathermap.org/ */
-
-let id = 'your_api_key';
-let url = 'https://api.openweathermap.org/data/2.5/weather?units=metric&appid=' + id;
+let id = "bruh"; // Reemplaza con tu API key
+let url =
+  "https://api.openweathermap.org/data/2.5/weather?units=metric&appid=" + id;
 
 const searchWeather = () => {
-    fetch(url + '&q=' + valueSearch.value)
-    .then (responsive => responsive.json())
-    .then (data => {
-        console.log(data);
-        if (data.cod == '200') {
-           city.querySelector('figcaption').innerText = data.name;
-           city.querySelector('img').src = 'https://flagsapi.com/' + data.sys.country + '/shiny/64.png';
+  fetch(url + "&q=" + valueSearch.value)
+    .then((responsive) => responsive.json())
+    .then((data) => {
+      console.log(data);
+      if (data.cod == "200") {
+        city.querySelector("figcaption").innerText = data.name;
+        city.querySelector("img").src =
+          "https://flagsapi.com/" + data.sys.country + "/shiny/64.png";
 
-           temperature.querySelector('img').src = 'https://openweathermap.org/img/wn/' + data.weather[0].icon + '@4x.png';
-           temperature.querySelector('figcaption span').innerText = data.main.temp;
+        temperature.querySelector("img").src =
+          "https://openweathermap.org/img/wn/" +
+          data.weather[0].icon +
+          "@4x.png";
+        temperature.querySelector("figcaption span").innerText = data.main.temp;
 
-           description.innerText = data.weather[0].description;
-           clouds.innerText = data.clouds.all;
-           humidity.innerText = data.main.humidity;
-           pressure.innerText = data.main.pressure;
-        } else {
-            main.classList.add('error');
-            setTimeout(() => {
-                main.classList.remove('error');
-            }, 1000);
-        }
+        description.innerText = data.weather[0].description;
+        clouds.innerText = data.clouds.all;
+        humidity.innerText = data.main.humidity;
+        pressure.innerText = data.main.pressure;
+      } else {
+        main.classList.add("border-red-500");
+        setTimeout(() => {
+          main.classList.remove("border-red-500");
+        }, 1000);
+      }
 
-        valueSearch.value = '';
-
-    })
-}
+      valueSearch.value = "";
+    });
+};
 
 const initApp = () => {
-    valueSearch.value = 'Queretaro';
-    searchWeather();
-}
+  valueSearch.value = "Queretaro";
+  searchWeather();
+};
 
 initApp();

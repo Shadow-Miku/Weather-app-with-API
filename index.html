@@ -1,58 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <link rel="shortcut icon" href="./IMG-20240822-WA0018.jpg" type="image/x-icon">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+    <link
+      rel="shortcut icon"
+      href="./IMG-20240822-WA0018.jpg"
+      type="image/x-icon"
+    />
+  </head>
+  <body
+    class="bg-gradient-to-br from-sky-100 via-white to-blue-100 min-h-screen flex items-center justify-center px-4"
+  >
+    <main
+      class="w-full max-w-md bg-white/70 backdrop-blur-lg rounded-2xl shadow-xl p-6 space-y-6 border border-slate-200 transition-all duration-300"
+      id="main"
+    >
+      <!-- Search Form -->
+      <form class="flex items-center gap-2">
+        <input
+          type="text"
+          autocomplete="off"
+          id="valueSearch"
+          placeholder="Buscar ciudad..."
+          class="flex-1 px-4 py-2 rounded-xl border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-300"
+        />
+        <button
+          type="submit"
+          class="bg-sky-500 text-white p-3 rounded-xl shadow-md hover:bg-sky-600 transition"
+        >
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </form>
 
-    <main>
-        <form action="">
-            <input type="text" autocomplete="off" id="valueSearch">
-            <button>
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
-        </form>
+      <!-- Weather Result -->
+      <section class="grid grid-cols-1 gap-4">
+        <!-- City Info -->
+        <figure
+          class="flex items-center justify-between bg-white rounded-xl p-4 shadow-sm border border-gray-200"
+          id="city"
+        >
+          <figcaption class="text-lg font-semibold text-gray-800">
+            Mexico
+          </figcaption>
+          <img
+            src="https://flagsapi.com/MX/shiny/64.png"
+            alt="Flag"
+            class="w-10 h-10 rounded"
+          />
+        </figure>
 
-        <section class="result">
-            <figure class="name" id="city">
-                <figcaption>Mexico</figcaption>
-                <img src="https://flagsapi.com/MX/shiny/64.png" alt="">
-            </figure>
-            <figure class="temperature" id="temperature">
-                <img src="https://openweathermap.org/img/wn/10d@4x.png" alt="">
-                <figcaption>
-                    <i class="fa-solid fa-temperature-low"></i>
-                    <span>31</span>
-                    <sup>o</sup>C
-                </figcaption>
-            </figure>
-            <p class="description" id="description">Nublado</p>
+        <!-- Temperature -->
+        <figure
+          class="flex items-center justify-between bg-white rounded-xl p-4 shadow-sm border border-gray-200"
+          id="temperature"
+        >
+          <img
+            src="https://openweathermap.org/img/wn/10d@4x.png"
+            alt="Weather Icon"
+            class="w-20 h-20"
+          />
+          <figcaption
+            class="text-3xl font-bold text-gray-700 flex items-center gap-1"
+          >
+            <i class="fa-solid fa-temperature-low text-blue-500"></i>
+            <span>31</span><sup class="text-base">°C</sup>
+          </figcaption>
+        </figure>
 
-            <ul>
-                <li>
-                    <span>Nubes</span>
-                    <i class="fa-solid fa-cloud"></i>
-                    <span id="clouds">10</span>%
-                </li>
-                <li>
-                    <span>Humedad</span>
-                    <i class="fa-solid fa-droplet"></i>
-                    <span id="humidity">10</span>%
-                </li>
-                <li>
-                    <span>Presión</span>
-                    <i class="fa-solid fa-gauge"></i>
-                    <span id="pressure">10</span>hPa
-                </li>
-            </ul>
-        </section>
+        <!-- Description -->
+        <p
+          class="text-center text-xl font-medium text-gray-600"
+          id="description"
+        >
+          Nublado
+        </p>
+
+        <!-- Details -->
+        <ul class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm text-gray-600">
+          <li
+            class="flex flex-col items-center bg-white p-4 rounded-xl border border-gray-200 shadow-sm"
+          >
+            <span class="font-medium">Nubes</span>
+            <i class="fa-solid fa-cloud text-blue-400 text-xl my-1"></i>
+            <span id="clouds">10</span>%
+          </li>
+          <li
+            class="flex flex-col items-center bg-white p-4 rounded-xl border border-gray-200 shadow-sm"
+          >
+            <span class="font-medium">Humedad</span>
+            <i class="fa-solid fa-droplet text-sky-400 text-xl my-1"></i>
+            <span id="humidity">10</span>%
+          </li>
+          <li
+            class="flex flex-col items-center bg-white p-4 rounded-xl border border-gray-200 shadow-sm"
+          >
+            <span class="font-medium">Presión</span>
+            <i class="fa-solid fa-gauge text-gray-500 text-xl my-1"></i>
+            <span id="pressure">10</span> hPa
+          </li>
+        </ul>
+      </section>
     </main>
-    
-</body>
-<script src="app.js"></script>
+    <script src="./app.js"></script>
+  </body>
 </html>
